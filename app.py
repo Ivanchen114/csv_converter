@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file, render_template_string
+from flask import Flask, request, send_file, render_template
 import pandas as pd
 import io
 
@@ -46,24 +46,8 @@ def index():
             download_name="standardized.csv"
         )
 
-    return render_template_string("""
-    <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title>CSV 格式轉換</title>
-      </head>
-      <body>
-        <h1>CSV 格式轉換工具</h1>
-        <form action="/" method="post" enctype="multipart/form-data">
-          <label for="file">請選擇非標準格式 CSV 檔案：</label>
-          <input type="file" name="file" id="file" accept=".csv">
-          <br><br>
-          <input type="submit" value="上傳並轉換">
-        </form>
-      </body>
-    </html>
-    """)
+    # 渲染 index.html
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
